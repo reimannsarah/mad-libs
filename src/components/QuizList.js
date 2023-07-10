@@ -1,7 +1,6 @@
 import React from "react";
 import Quiz from "./Quiz";
 import PropTypes from "prop-types";
-import { v4 } from 'uuid';
 
 function QuizList(props) {
   return (
@@ -10,9 +9,11 @@ function QuizList(props) {
         return (
           <Quiz
             whenQuizClicked={props.onQuizSelect}
-            key={v4()}
+            key={quiz.id}
             id={quiz.id}
             title={quiz.title}
+            whenEditClicked={props.onEditClick}
+            whenDeleteClicked={props.onDeleteClick}
           />
         )
       })}
@@ -22,7 +23,9 @@ function QuizList(props) {
 
 QuizList.propTypes = {
   onQuizSelect: PropTypes.func,
-  quizList: PropTypes.array
+  quizList: PropTypes.array,
+  onEditClick: PropTypes.func,
+  onDeleteClick: PropTypes.func
 }
 
 export default QuizList;
