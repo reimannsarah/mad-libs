@@ -1,7 +1,5 @@
 import React from "react";
-import Result from "./Result";
 import PropTypes from "prop-types";
-import { v4 } from 'uuid';
 
 function ResultList(props) {
   return (
