@@ -1,9 +1,12 @@
 import React from "react";
+import { v4 } from "uuid";
 
 function NewQuizForm(props) {
   function handleNewQuizSubmission(event) {
     event.preventDefault();
     props.onNewQuizCreation({
+      id: v4(),
+      title: event.target.title.value,
       sentence1: event.target.sentence1.value,
       pos1: event.target.pos1.value,
       sentence2: event.target.sentence2.value,
