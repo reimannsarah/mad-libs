@@ -17,6 +17,11 @@ A Mad Libs app where user can create and fill out a MadLibs puzzle.
 
 ## Component Diagram
 
+## Setting up Firebase Database
+1. Navigate to https://firebase.google.com/ and sign in to your Google account or create a new account.
+2. Create a Firebase Project:
+  * Click _Create a Project_ and give your project the name
+
 # License
 
 MIT License
