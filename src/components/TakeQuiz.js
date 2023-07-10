@@ -8,6 +8,7 @@ function TakeQuiz(props) {
     event.preventDefault();
     props.onQuizSubmission({
       id: v4(),
+      title: quiz.title,
       sentence1: quiz.sentence1,
       pos1: event.target.pos1.value,
       sentence2: quiz.sentence2,
