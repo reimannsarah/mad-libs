@@ -3,6 +3,7 @@ import NewQuizForm from "./NewQuizForm";
 import QuizList from "./QuizList";
 import TakeQuiz from "./TakeQuiz";
 import Result from "./Result";
+import ResultList from "./ResultList";
 
 function QuizControl() {
 	const [quizFormVisible, setQuizFormVisible] = useState(false);
@@ -18,7 +19,15 @@ function QuizControl() {
   }
 
   const handleClick = () => {
+    if (result !== null) {
+      setResult(null);
+      setQuizFormVisible(false);
+    } else if (selectedQuiz !== null) {
+      setSelectedQuiz(null);
+      setQuizFormVisible(false);
+    } else {
     setQuizFormVisible(!quizFormVisible);
+    }
   } 
 
   const handleChangingQuiz = (id) => {
@@ -31,6 +40,11 @@ function QuizControl() {
     setResultList(newResultList);
     setSelectedQuiz(null);
     setResult(result);
+  }
+
+  const handleChangingResult = (id) => {
+    const selection = resultList.filter(result => result.id === id)[0];
+    setResult(selection);
   }
 
   let currentlyVisible = null;
@@ -47,6 +61,8 @@ function QuizControl() {
     <React.Fragment>
       <h1>Quizzes</h1>
       <QuizList quizList={quizList} onQuizSelect={handleChangingQuiz} />
+      <h1>MadLib Results</h1>
+      <ResultList resultList={resultList} onResultSelection={handleChangingResult} />
     </React.Fragment>
   }
   return (
