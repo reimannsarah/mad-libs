@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 function QuizList(props) {
   return (
-    <React.Fragment>
+    <div className="quiz-list">
       {props.quizList.map((quiz) => {
         return (
           <Quiz
@@ -17,7 +17,7 @@ function QuizList(props) {
           />
         )
       })}
-    </React.Fragment>
+    </div>
   );
 }
 

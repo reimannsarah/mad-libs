@@ -4,12 +4,12 @@ import QuizList from "./QuizList";
 import TakeQuiz from "./TakeQuiz";
 import Result from "./Result";
 import ResultList from "./ResultList";
-import db from "../firebase";
-import  { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { db, auth } from "../firebase";
+import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import EditQuizForm from "./EditQuizForm";
 
 function QuizControl() {
-	const [quizFormVisible, setQuizFormVisible] = useState(false);
+  const [quizFormVisible, setQuizFormVisible] = useState(false);
   const [quizList, setQuizList] = useState([]);
   const [resultList, setResultList] = useState([]);
   const [result, setResult] = useState(null);
@@ -71,9 +71,9 @@ function QuizControl() {
       setSelectedQuiz(null);
       setQuizFormVisible(false);
     } else {
-    setQuizFormVisible(!quizFormVisible);
+      setQuizFormVisible(!quizFormVisible);
     }
-  } 
+  }
 
   const handleEditClick = () => {
     setEditing(true);
@@ -85,7 +85,7 @@ function QuizControl() {
     setEditing(false);
     setSelectedQuiz(null);
   }
-  
+
   const handleDeletingQuiz = async (id) => {
     await deleteDoc(doc(db, "quizzes", id));
     setSelectedQuiz(null);
@@ -108,39 +108,48 @@ function QuizControl() {
     setResult(selection);
   }
 
-  let currentlyVisible = null;
 
-  if (error) {
-    currentlyVisible = <p>There was an error: {error}</p>
-  } else if (editing) {
-    currentlyVisible = (
-      <EditQuizForm
-        quiz={selectedQuiz}
-        onEditQuiz={handleEditingQuizInList}
+  if (auth.currentUser == null) {
+    return (
+      <>
+        <h1>You must be signed in to access the queue, idiot</h1>
+      </>
+    )
+  } else if (auth.currentUser != null) {
+    let currentlyVisible = null;
+
+    if (error) {
+      currentlyVisible = <p>There was an error: {error}</p>
+    } else if (editing) {
+      currentlyVisible = (
+        <EditQuizForm
+          quiz={selectedQuiz}
+          onEditQuiz={handleEditingQuizInList}
         />
-    );
-  } else if (result !== null) {
-    currentlyVisible = <Result result={result} />
-  } else if (selectedQuiz !== null) {
-    currentlyVisible = <TakeQuiz selection={selectedQuiz} onQuizSubmission={handleQuizSubmission}/>
-  } else if (quizFormVisible) {
-    currentlyVisible = 
-    <NewQuizForm onNewQuizCreation={handleAddingNewQuiz} />
-  } else {
-    currentlyVisible = 
-    <React.Fragment>
-      <h1>Quizzes</h1>
-      <QuizList quizList={quizList} onQuizSelect={handleChangingQuiz} onEditClick={handleEditClick} onDeleteClick={handleDeletingQuiz}/>
-      <h1>MadLib Results</h1>
-      <ResultList resultList={resultList} onResultSelection={handleChangingResult} />
-    </React.Fragment>
+      );
+    } else if (result !== null) {
+      currentlyVisible = <Result result={result} />
+    } else if (selectedQuiz !== null) {
+      currentlyVisible = <TakeQuiz selection={selectedQuiz} onQuizSubmission={handleQuizSubmission} />
+    } else if (quizFormVisible) {
+      currentlyVisible =
+        <NewQuizForm onNewQuizCreation={handleAddingNewQuiz} />
+    } else {
+      currentlyVisible =
+        <React.Fragment>
+          <h1>Quizzes</h1>
+          <QuizList quizList={quizList} onQuizSelect={handleChangingQuiz} onEditClick={handleEditClick} onDeleteClick={handleDeletingQuiz} />
+          <h1>MadLib Results</h1>
+          <ResultList resultList={resultList} onResultSelection={handleChangingResult} />
+        </React.Fragment>
+    }
+    return (
+      <React.Fragment>
+        {currentlyVisible}
+        {error ? null : <button onClick={handleClick}>SHUT UP</button>}
+      </React.Fragment>
+    )
   }
-  return (
-    <React.Fragment>
-      {currentlyVisible}
-      {error ? null : <button onClick={handleClick}>SHUT UP</button>}
-    </React.Fragment>
-  )
 }
 
-export default QuizControl;
+  export default QuizControl;
