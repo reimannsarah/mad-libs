@@ -37,6 +37,26 @@ function QuizControl() {
     return () => unSubscribe();
   }, []);
 
+  useEffect(() => {
+    const unSubscribe = onSnapshot(
+      collection(db, "results"),
+      (collectionSnapshot) => {
+        const results = [];
+        collectionSnapshot.forEach((doc) => {
+          results.push({
+            ...doc.data(),
+            id: doc.id
+          });
+        });
+        setResultList(results);
+      },
+      (error) => {
+        setError(error.message)
+      }
+    );
+    return () => unSubscribe();
+  }, []);
+
   const handleAddingNewQuiz = async (newQuiz) => {
     const collectionRef = collection(db, "quizzes");
     await addDoc(collectionRef, newQuiz);
@@ -76,9 +96,9 @@ function QuizControl() {
     setSelectedQuiz(selection);
   }
 
-  const handleQuizSubmission = (result) => {
-    const newResultList = resultList.concat(result);
-    setResultList(newResultList);
+  const handleQuizSubmission = async (result) => {
+    const resultRef = collection(db, "results");
+    await addDoc(resultRef, result);
     setSelectedQuiz(null);
     setResult(result);
   }
