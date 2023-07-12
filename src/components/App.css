@@ -42,10 +42,87 @@
   font-family: var(--main-font);
 }
 
+.nav button {
+  text-decoration: none;
+  background: none;
+  border: none;
+  color: var(--dark);
+  font-family: var(--main-font);
+  font-size: larger;
+}
+
+.quizzes {
+  border: 1px solid black;
+}
+
 .quiz-list {
-  width: 30%;
+  width: 45%;
+  padding: 20px;
+  background-color: var(--light-green);
+  display: flex;
+  flex-direction: column;
   margin: 20px;
-  animation: spin linear 10s infinite;
+  border-radius: 7px;
+  box-shadow: 4px 4px 10px var(--dark);
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.quiz-list button {
+  font-size: 20px;
+  border: none;
+  margin: 5px;
+  padding: 5px 7px 5px;
+  border-radius: 7px;
+  background-color: var(--green);
+  border: 1px solid var(--green);
+  color: var(--dark);
+}
+
+.quiz-list button:hover {
+  background-color: var(--dark);
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+button.new-quiz-btn {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  border: none;
+  background-color: var(--pink);
+  color: var(--light-green);
+  font-size: 34px;
+  align-self: flex-end;
+  justify-self: baseline;
+}
+.results-guy {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  background-color: var(--light-green);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 7px;
+  box-shadow: 4px 4px 10px var(--dark);
+}
+
+button.delete-rslt-btn {
+  border: none;
+  background-color: transparent;
+  color: var(--light-green);
+  font-size: 34px;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  padding-bottom: 20px;
 }
 
 @keyframes spin {

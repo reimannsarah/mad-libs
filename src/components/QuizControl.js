@@ -7,6 +7,7 @@ import ResultList from "./ResultList";
 import { db, auth } from "../firebase";
 import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import EditQuizForm from "./EditQuizForm";
+import Header from "./Header";
 
 function QuizControl() {
   const [quizFormVisible, setQuizFormVisible] = useState(false);
@@ -57,6 +58,12 @@ function QuizControl() {
     return () => unSubscribe();
   }, []);
 
+  const handleHomeClick = () => {
+    setResult(null);
+    setEditing(false);
+    setQuizFormVisible(false);
+  }
+
   const handleAddingNewQuiz = async (newQuiz) => {
     const collectionRef = collection(db, "quizzes");
     await addDoc(collectionRef, newQuiz);
@@ -89,6 +96,11 @@ function QuizControl() {
   const handleDeletingQuiz = async (id) => {
     await deleteDoc(doc(db, "quizzes", id));
     setSelectedQuiz(null);
+  }
+
+  const handleDeleteResult = async (id) => {
+    await deleteDoc(doc(db, "results", id));
+    setResult(null);
   }
 
   const handleChangingQuiz = (id) => {
@@ -136,17 +148,15 @@ function QuizControl() {
         <NewQuizForm onNewQuizCreation={handleAddingNewQuiz} />
     } else {
       currentlyVisible =
-        <React.Fragment>
-          <h1>Quizzes</h1>
-          <QuizList quizList={quizList} onQuizSelect={handleChangingQuiz} onEditClick={handleEditClick} onDeleteClick={handleDeletingQuiz} />
-          <h1>MadLib Results</h1>
-          <ResultList resultList={resultList} onResultSelection={handleChangingResult} />
-        </React.Fragment>
+        <div className="main">
+          <QuizList quizList={quizList} onQuizSelect={handleChangingQuiz} onEditClick={handleEditClick} onDeleteClick={handleDeletingQuiz}  handleClick={handleClick}/>
+          <ResultList resultList={resultList} onResultSelection={handleChangingResult} onDeleteClick={handleDeleteResult} />
+        </div>
     }
     return (
       <React.Fragment>
+        <Header onHomeClick={handleHomeClick}/>
         {currentlyVisible}
-        {error ? null : <button onClick={handleClick}>SHUT UP</button>}
       </React.Fragment>
     )
   }

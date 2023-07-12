@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { auth } from '../firebase';
 
-function Header() {
+function Header(props) {
   let currentlyGuyBeingGuy = null;
   let userGreetingTheGUy = null;
   if (auth.currentUser == null) {
@@ -19,7 +19,7 @@ function Header() {
     <h1>Dragon Grag Libs</h1>
     <ul className='nav'>
       <li>
-        <Link to="/" className='nav-link'>Home</Link>
+        <button onClick={props.onHomeClick}>Home</button>
       </li>
       <li>
         {currentlyGuyBeingGuy}

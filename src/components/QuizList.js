@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 function QuizList(props) {
   return (
     <div className="quiz-list">
+      <h1>MadLibs</h1>
       {props.quizList.map((quiz) => {
         return (
           <Quiz
@@ -17,6 +18,7 @@ function QuizList(props) {
           />
         )
       })}
+      <button className="new-quiz-btn" onClick={props.handleClick}>+</button>
     </div>
   );
 }
