@@ -25,7 +25,7 @@ function TakeQuiz(props) {
   return (
     <React.Fragment>
       <h1>{quiz.title}</h1>
-      <form onSubmit={handleQuizSubmit}>
+      <form className="take-quiz" onSubmit={handleQuizSubmit}>
         <input name="pos1" type="text" placeholder={quiz.pos1} />
         <input name="pos2" type="text" placeholder={quiz.pos2} />
         <input name="pos3" type="text" placeholder={quiz.pos3} />

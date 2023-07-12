@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReusableForm from "./ReusableForm";
 import { serverTimestamp } from 'firebase/firestore';
+import { auth } from '../firebase'
 
 function NewQuizForm(props) {
   function handleNewQuizSubmission(event) {
@@ -18,7 +19,8 @@ function NewQuizForm(props) {
       pos4: event.target.pos4.value,
       sentence5: event.target.sentence5.value,
       pos5: event.target.pos5.value,
-      timeCreated: serverTimestamp()
+      timeCreated: serverTimestamp(),
+      author: auth.currentUser.email
     });
   }
   return (

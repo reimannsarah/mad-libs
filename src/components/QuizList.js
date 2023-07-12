@@ -14,6 +14,7 @@ function QuizList(props) {
             key={quiz.id}
             id={quiz.id}
             title={quiz.title}
+            author={quiz.author}
             timeCreated={quiz.timeCreated}
             whenEditClicked={props.onEditClick}
             whenDeleteClicked={props.onDeleteClick}

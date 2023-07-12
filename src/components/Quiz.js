@@ -4,7 +4,7 @@ function Quiz(props) {
   return (
     <div>
       <h3 onClick={() => props.whenQuizClicked(props.id)}>{props.title}</h3>
-      <p>{props.timeCreated}</p>
+      <p>Authored by {props.author} on {props.timeCreated}</p>
       <button onClick={() => props.whenEditClicked(props.id)}>Edit</button>
       <button onClick={() => props.whenDeleteClicked(props.id)}>Delete</button>
     </div>

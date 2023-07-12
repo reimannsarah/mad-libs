@@ -129,12 +129,12 @@ function QuizControl() {
   if (auth.currentUser == null) {
     return (
       <>
+      <Header />
         <h1>You must be signed in to access the queue, idiot</h1>
       </>
     )
   } else if (auth.currentUser != null) {
     let currentlyVisible = null;
-
     if (error) {
       currentlyVisible = <p>There was an error: {error}</p>
     } else if (editing) {
@@ -145,7 +145,7 @@ function QuizControl() {
         />
       );
     } else if (result !== null) {
-      currentlyVisible = <Result result={result} />
+      currentlyVisible = <Result result={result} onBackClick={handleHomeClick}/>
     } else if (selectedQuiz !== null) {
       currentlyVisible = <TakeQuiz selection={selectedQuiz} onQuizSubmission={handleQuizSubmission} />
     } else if (quizFormVisible) {

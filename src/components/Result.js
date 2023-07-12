@@ -1,11 +1,14 @@
 import React from "react";
+import Typewriter from "./Typewriter";
 
 function Result(props) {
   const result = props.result;
+  const text = `${result.sentence1} ${result.pos1} ${result.sentence2} ${result.pos2} ${result.sentence3} ${result.pos3} ${result.sentence4} ${result.pos4} ${result.sentence5} ${result.pos5}`
   return (
-  <React.Fragment>
-    <p>{result.sentence1} <span><strong>{result.pos1}</strong></span> {result.sentence2} <span><strong>{result.pos2}</strong></span> {result.sentence3} <span><strong>{result.pos3}</strong></span> {result.sentence4} <span><strong>{result.pos4}</strong></span> {result.sentence5} <span><strong>{result.pos5}</strong></span></p>
-  </React.Fragment>
+  <div className="result">
+    <Typewriter text={text} />
+    <p className="back" onClick={props.onBackClick}>&#8672; Back</p>
+  </div>
   )
 }
 

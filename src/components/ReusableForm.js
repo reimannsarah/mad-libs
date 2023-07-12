@@ -17,7 +17,7 @@ function ReusableForm(props) {
     </>
   );
   return (
-    <form onSubmit={props.formSubmissionHandler}>
+    <form className="madlib-form" onSubmit={props.formSubmissionHandler}>
       <input type="text" placeholder="Click here to add title" name="title" required/>
       <textarea name="sentence1" placeholder="Once upon a time..." rows="4" cols="50" required />
       <select name="pos1" required>
