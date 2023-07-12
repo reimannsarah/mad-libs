@@ -10,7 +10,7 @@ function ResultList(props) {
   viewBox="0 0 25 24.8" 
   data-ember-action="" 
   data-ember-action-1015="1015">
-  <g class="trashcan-closed">
+  <g className="trashcan-closed">
     <path d="M6.8,8.8h11L17,22.6
             H7.6L6.8,8.8z 
             M4.9,7l1,17.4h12.8

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import { auth } from '../firebase';
 
 function Header(props) {
@@ -7,10 +6,10 @@ function Header(props) {
   let userGreetingTheGUy = null;
   if (auth.currentUser == null) {
     currentlyGuyBeingGuy = 
-    <Link to="/sign-in" className='nav-link'>Sign In</Link>  
+    <button onClick={props.onSignInClick}>Sign In</button>  
   } else if (auth.currentUser != null) {
     currentlyGuyBeingGuy = 
-    <Link to="./sign-out" className='nav-link'>Sign Out</Link>
+    <button onClick={props.onSignOutClick} className='nav-link'>Sign Out</button>
     userGreetingTheGUy = auth.currentUser.email
   }
 

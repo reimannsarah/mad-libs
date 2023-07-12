@@ -8,6 +8,8 @@ import { db, auth } from "../firebase";
 import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import EditQuizForm from "./EditQuizForm";
 import Header from "./Header";
+import SignIn from "./SignIn";
+import SignOut from "./SignOut";
 import { format } from 'date-fns';
 
 
@@ -19,6 +21,8 @@ function QuizControl() {
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [error, setError] = useState(null);
   const [editing, setEditing] = useState(false);
+  const [signIn, setSignIn] = useState(false);
+  const [signOut, setSignOut] = useState(false);
 
   useEffect(() => {
     const unSubscribe = onSnapshot(
@@ -67,6 +71,17 @@ function QuizControl() {
     setResult(null);
     setEditing(false);
     setQuizFormVisible(false);
+    setSelectedQuiz(null);
+    setSignIn(false);
+    setSignOut(false);
+  }
+
+  const handleSignOutClick = () => {
+    setSignOut(true);
+  }
+
+  const handleSignInClick = () => {
+    setSignIn(true);
   }
 
   const handleAddingNewQuiz = async (newQuiz) => {
@@ -127,24 +142,32 @@ function QuizControl() {
 
 
   if (auth.currentUser == null) {
+    let currentlyGuy = null;
+    if (signIn) {
+      currentlyGuy = <SignIn />
+    } else {
+      currentlyGuy = <h1>You must be signed in to access the queue, idiot</h1>
+    }
     return (
       <>
-      <Header />
-        <h1>You must be signed in to access the queue, idiot</h1>
+      <Header onSignInClick={handleSignInClick}/>
+      {currentlyGuy}
       </>
     )
   } else if (auth.currentUser != null) {
     let currentlyVisible = null;
     if (error) {
       currentlyVisible = <p>There was an error: {error}</p>
+    } else if (signOut) {
+        currentlyVisible = <SignOut />
     } else if (editing) {
       currentlyVisible = (
         <EditQuizForm
           quiz={selectedQuiz}
           onEditQuiz={handleEditingQuizInList}
         />
-      );
-    } else if (result !== null) {
+        );
+      } else if (result !== null) {
       currentlyVisible = <Result result={result} onBackClick={handleHomeClick}/>
     } else if (selectedQuiz !== null) {
       currentlyVisible = <TakeQuiz selection={selectedQuiz} onQuizSubmission={handleQuizSubmission} />
@@ -160,7 +183,7 @@ function QuizControl() {
     }
     return (
       <React.Fragment>
-        <Header onHomeClick={handleHomeClick}/>
+        <Header onHomeClick={handleHomeClick} onSignOutClick={handleSignOutClick}/>
         {currentlyVisible}
       </React.Fragment>
     )
