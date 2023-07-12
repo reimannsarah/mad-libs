@@ -38,7 +38,7 @@ function ResultList(props) {
       {props.resultList.map((result) => {
         return (
           <div key={result.id} >
-            <p><span onClick={() => props.onResultSelection(result.id)}>{result.sentence1 + result.pos1}...</span><span><button className="delete-rslt-btn" onClick={() => props.onDeleteClick(result.id)}>{trashcan}</button></span></p>
+            <p><span onClick={() => props.onResultSelection(result.id)}>{result.sentence1} {result.pos1}...</span><span><button className="delete-rslt-btn" onClick={() => props.onDeleteClick(result.id)}>{trashcan}</button></span></p>
             
           </div>
         )

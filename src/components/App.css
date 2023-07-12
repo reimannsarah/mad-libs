@@ -1,14 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Courgette&family=Source+Code+Pro:ital,wght@0,300;0,400;0,800;1,300&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
 :root {
   --pink: #FF579F;
   --light-green: #BBDFC5;
   --green: #BAB700;
   --other-green: #60935D;
   --dark: #14342B;
+  --lighter-dark: #205143;
+  --snow: snow;
 
   --header-font: 'Courgette';
   --main-font: 'Source Code', monospace;
+}
+
+body {
+  background-color: var(--snow);
 }
 
 .header {
@@ -66,6 +74,60 @@
   box-shadow: 4px 4px 10px var(--dark);
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--lighter-dark);
+  border-radius: 7px;
+  width: 80%;
+  margin: 20px auto;
+  box-shadow: 4px 4px 10px var(--dark);
+}
+
+form input, textarea {
+  width: 50%;
+  margin: 20px;
+  background-color: var(--snow);
+  border: none;
+  padding: 5px;
+  border-radius: 7px;
+}
+
+form input {
+  padding: 25px;
+  font-size: 40px;
+  font-family: "Anton";
+  text-align: center;
+  background: none;
+  color: white;
+}
+form select {
+  border: none;
+  padding: 5px;
+  border-radius: 7px;
+}
+
+form select:hover {
+  cursor: pointer;
+}
+
+form button {
+  margin: 30px;
+  padding: 5px 15px 5px;
+  border: 1px solid var(--pink);
+  border-radius: 7px;
+  background-color: var(--pink);
+  color: white;
+}
+
+form button:hover {
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid var(--pink);
+  color: var(--pink);
+}
+
 .main {
   display: flex;
   justify-content: space-between;
@@ -98,10 +160,11 @@ button.new-quiz-btn {
   border: none;
   background-color: var(--pink);
   color: var(--light-green);
-  font-size: 32px;
+  font-size: 29px;
   align-self: flex-end;
   justify-self: baseline;
 }
+
 .results-guy {
   display: flex;
   flex-direction: column;

@@ -32,7 +32,7 @@ function NewQuizForm(props) {
 }
 
 NewQuizForm.propTypes = {
-  onNewQuizCreation: PropTypes.func
+  onNewQuizCreation: PropTypes.func,
 }
 
 export default NewQuizForm;
