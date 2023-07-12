@@ -8,6 +8,8 @@ import { db, auth } from "../firebase";
 import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import EditQuizForm from "./EditQuizForm";
 import Header from "./Header";
+import { format } from 'date-fns';
+
 
 function QuizControl() {
   const [quizFormVisible, setQuizFormVisible] = useState(false);
@@ -24,8 +26,11 @@ function QuizControl() {
       (collectionSnapshot) => {
         const quizzes = [];
         collectionSnapshot.forEach((doc) => {
+          const timeCreated = doc.get('timeCreated', {serverTimestamps: "estimate"}).toDate();
+          const jsDate = format (new Date(timeCreated), 'MMMM dd, yyyy');
           quizzes.push({
             ...doc.data(),
+            timeCreated: jsDate,
             id: doc.id
           });
         });

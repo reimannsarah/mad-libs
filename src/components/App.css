@@ -98,7 +98,7 @@ button.new-quiz-btn {
   border: none;
   background-color: var(--pink);
   color: var(--light-green);
-  font-size: 34px;
+  font-size: 32px;
   align-self: flex-end;
   justify-self: baseline;
 }

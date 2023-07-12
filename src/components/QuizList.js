@@ -1,6 +1,7 @@
 import React from "react";
 import Quiz from "./Quiz";
 import PropTypes from "prop-types";
+// import { format } from 'date-fns'
 
 function QuizList(props) {
   return (
@@ -13,12 +14,13 @@ function QuizList(props) {
             key={quiz.id}
             id={quiz.id}
             title={quiz.title}
+            timeCreated={quiz.timeCreated}
             whenEditClicked={props.onEditClick}
             whenDeleteClicked={props.onDeleteClick}
           />
         )
       })}
-      <button className="new-quiz-btn" onClick={props.handleClick}>+</button>
+      <button className="new-quiz-btn" onClick={props.handleClick}>&#43;</button>
     </div>
   );
 }
