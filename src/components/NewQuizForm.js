@@ -20,7 +20,7 @@ function NewQuizForm(props) {
       sentence5: event.target.sentence5.value,
       pos5: event.target.pos5.value,
       timeCreated: serverTimestamp(),
-      author: auth.currentUser.email
+      author: auth.currentUser.displayName
     });
   }
   return (
