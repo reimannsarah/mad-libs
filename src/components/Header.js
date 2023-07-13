@@ -10,7 +10,7 @@ function Header(props) {
   } else if (auth.currentUser != null) {
     currentlyGuyBeingGuy = 
     <button onClick={props.onSignOutClick} className='nav-link'>Sign Out</button>
-    userGreetingTheGUy = auth.currentUser.email
+    userGreetingTheGUy = (auth.currentUser.displayName) ? auth.currentUser.displayName : auth.currentUser.email
   }
 
   return (
