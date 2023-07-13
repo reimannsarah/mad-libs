@@ -2,6 +2,8 @@
 
 ### by Sarah Reimann and Emma Gerigscott
 
+![home page](./src/imgs/home-page.png)
+
 ## Description
 
 A Mad Libs app where user can create and fill out a MadLibs puzzle.
