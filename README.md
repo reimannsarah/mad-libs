@@ -1,4 +1,4 @@
-# Buckey's Mad Libs 
+# Dragon Grag Libs
 
 ### by Sarah Reimann and Emma Gerigscott
 
@@ -16,6 +16,8 @@ A Mad Libs app where user can create and fill out a MadLibs puzzle.
 * _FireStore_
 
 ## Component Diagram
+
+![component diagram](./src/imgs/component-diagram.png)
 
 ## Setting up Firebase Database
 1. Navigate to https://firebase.google.com/ and sign in to your Google account or create a new account.
@@ -60,7 +62,7 @@ MIT License
 
 Copyright (c) 2023 Sarah Reimann and Emma Gerigscott, Ladies IT Department
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted insofar as thus it is not, free of charge, if one were to charge, to any person obtaining a copy of this software and brilliant thoughts and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
