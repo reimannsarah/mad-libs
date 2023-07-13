@@ -160,7 +160,8 @@ form button:hover {
   gap: 20px;
 }
 
-.quiz-list button {
+.quiz-list button,
+.sign-out button {
   font-size: 20px;
   border: none;
   margin: 5px;
@@ -171,7 +172,8 @@ form button:hover {
   color: var(--dark);
 }
 
-.quiz-list button:hover {
+.quiz-list button:hover,
+.sign-out button:hover {
   background-color: var(--dark);
   color: white;
   border: 1px solid white;
@@ -238,11 +240,27 @@ button.delete-rslt-btn {
   font-size: 18px;
 }
 
+.sign-in,
+.sign-out {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: auto;
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 914px) {
+  .sign-in,
+  .sign-out {
+    width: 70%
   }
 }
