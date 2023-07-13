@@ -80,8 +80,14 @@ function QuizControl() {
     setSignOut(true);
   }
 
+  const handleSuccessfulSignout = () => {
+    setSignOut(false);
+    setSignIn(true);
+  }
+
   const handleSignInClick = () => {
     setSignIn(true);
+    setSignOut(false);
   }
 
   const handleAddingNewQuiz = async (newQuiz) => {
@@ -144,13 +150,13 @@ function QuizControl() {
   if (auth.currentUser == null) {
     let currentlyGuy = null;
     if (signIn) {
-      currentlyGuy = <SignIn />
+      currentlyGuy = <SignIn onClickSignIn={handleHomeClick}/>
     } else {
       currentlyGuy = <h1>You must be signed in to access the queue, idiot</h1>
     }
     return (
       <>
-      <Header onSignInClick={handleSignInClick}/>
+      <Header onHomeClick={handleHomeClick} onSignInClick={handleSignInClick}/>
       {currentlyGuy}
       </>
     )
@@ -159,7 +165,7 @@ function QuizControl() {
     if (error) {
       currentlyVisible = <p>There was an error: {error}</p>
     } else if (signOut) {
-        currentlyVisible = <SignOut />
+        currentlyVisible = <SignOut onSignout={handleSuccessfulSignout}/>
     } else if (editing) {
       currentlyVisible = (
         <EditQuizForm
@@ -167,7 +173,7 @@ function QuizControl() {
           onEditQuiz={handleEditingQuizInList}
         />
         );
-      } else if (result !== null) {
+    } else if (result !== null) {
       currentlyVisible = <Result result={result} onBackClick={handleHomeClick}/>
     } else if (selectedQuiz !== null) {
       currentlyVisible = <TakeQuiz selection={selectedQuiz} onQuizSubmission={handleQuizSubmission} />

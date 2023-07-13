@@ -68,6 +68,20 @@ body {
   cursor: pointer;
 }
 
+.sign-in-up-form {
+  background-color: var(--other-green);
+  width: 70%;
+  text-align: center;
+  border-radius: 7px;
+  box-shadow: 4px 4px 10px var(--dark);
+}
+
+.sign-in-up-form input {
+  border: none;
+  padding: 5px;
+  margin: 20px;
+}
+
 .quizzes {
   border: 1px solid black;
 }

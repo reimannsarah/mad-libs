@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { auth } from './../firebase'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
-function SignIn() {
+function SignIn(props) {
   const [signUpSuccess, setSignUpSuccess] = useState(null);
   const [signInSuccess, setSignInSuccess] = useState(null);
 
@@ -27,6 +27,7 @@ function SignIn() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setSignInSuccess(`You've successfully signed in as ${userCredential.user.email}!`)
+        setTimeout(() => props.onClickSignIn(), 1000);
       })
       .catch((error) => {
         setSignInSuccess(`There as an error signing in: ${error.message}!`)
@@ -39,8 +40,8 @@ function SignIn() {
     <>
       <h1>Sign In</h1>
       {signInSuccess}
-      <form onSubmit={doSignIn}>
-        <input
+      <form className="sign-in-up-form" onSubmit={doSignIn}>
+        <input 
           type="text"
           name="signInEmail"
           placeholder="email" />
@@ -53,7 +54,7 @@ function SignIn() {
       </form>
       <h1>Sign Up</h1>
       {signUpSuccess}
-      <form onSubmit={doSignUp}>
+      <form className="sign-in-up-form" onSubmit={doSignUp}>
         <input type='email' name='email' placeholder='email' />
         <input type='password' name='password' placeholder='password' />
         <button type='submit'>Sign up</button>
