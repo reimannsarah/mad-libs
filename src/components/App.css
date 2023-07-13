@@ -70,7 +70,7 @@ body {
 
 .sign-in-up-form {
   background-color: var(--other-green);
-  width: 70%;
+  width: 50%;
   text-align: center;
   border-radius: 7px;
   box-shadow: 4px 4px 10px var(--dark);
@@ -245,7 +245,7 @@ button.delete-rslt-btn {
   padding-top: 20px;
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 50%;
   margin: auto;
 }
 
@@ -258,9 +258,18 @@ button.delete-rslt-btn {
   }
 }
 
-@media (max-width: 914px) {
+@media screen and (max-width: 712px) {
   .sign-in,
   .sign-out {
-    width: 70%
+    width: 60%
+  }
+
+  .main {
+    width: 100vw;
+  }
+
+  .header {
+    width: 100%;
+    font-size: 18px;
   }
 }
