@@ -15,7 +15,7 @@ function SignOut(props) {
       });
   }
   return (
-    <div>
+    <div className="sign-out">
       <h1>Sign Out</h1>
       {signOutSucess}
       <br />
