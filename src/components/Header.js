@@ -15,7 +15,7 @@ function Header(props) {
 
   return (
     <div className='header'>
-    <h1>Dragon Grag Libs</h1>
+    <h1>Dragon Mad Libs</h1>
     <ul className='nav'>
       <li>
         <button onClick={props.onHomeClick}>Home</button>
