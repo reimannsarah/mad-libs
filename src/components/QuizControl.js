@@ -152,7 +152,7 @@ function QuizControl() {
     if (signIn) {
       currentlyGuy = <SignIn onClickSignIn={handleHomeClick}/>
     } else {
-      currentlyGuy = <h1>You must be signed in to access the queue, idiot</h1>
+      currentlyGuy = <h1>You must be signed in to access the queue</h1>
     }
     return (
       <>

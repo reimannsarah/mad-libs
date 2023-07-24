@@ -14,7 +14,7 @@ function SignIn(props) {
     const username = event.target.username.value;
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        setSignUpSuccess(`You're an idiot`)
+        setSignUpSuccess(`Sign up successful`)
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           setSignInSuccess(`You've successfully signed in as ${userCredential.user.email}!`)
